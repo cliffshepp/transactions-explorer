@@ -1,6 +1,7 @@
 <!--[if gt IE 8]><!-->
 <script type="text/javascript" src="{{ 'javascripts/lib/d3.v3.js' | as_asset_url }}"></script>
 <script type="text/javascript" src="{{ 'javascripts/table-to-tree-map.js' | as_asset_url }}"></script>
+<script type="text/javascript" src="{{ 'javascripts/tree-caption.js' | as_asset_url }}"></script>
 <script>
   $(document).ready(function() {
       if ($(".treemap").length) {
@@ -13,7 +14,8 @@
         $(window).on('resize', function () {
           TreeMapLayout.display("{{ treemapDivId }}", tree);
         });
-
+        // Add hover captions 
+        tipperate();
       }
   });
 </script>
