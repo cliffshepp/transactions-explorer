@@ -109,7 +109,7 @@ var Tree = (function () {
     }
     return children; 
   };
-  
+
   return {
     formatNumericLabel: formatNumericLabel,
     numberWithCommas: numberWithCommas,
@@ -249,38 +249,11 @@ var TreeMapLayout = (function () {
             .each(setNodeContent);
         });
 
-    var rsplit = function (str, matchThis) {
-        var length = str.length, whereToSplit = undefined;
-        for (var i = length; i > 0; i--) {
-            if (str[i] === matchThis) {
-                whereToSplit = i;
-                break;
-            }
-        }
-        return [
-            str.slice(0,whereToSplit + 1),
-            str.slice(whereToSplit + 1, length)
-        ];
-    };
-
     if (window.$) {
       var $figure = $('#' + divId);
-      var $cap = $('<figcaption/>').appendTo($figure);
-
       // hide the first wrapping node
       $figure.find('.node').first().hide();
 
-      $figure.find('.node').on('mouseenter',function(){
-        var $this = $(this),
-            bg = $this.css('background-color'),
-            tooltipText = $this.data('tooltip'),
-            serviceDetails = rsplit(tooltipText, ':');
-        $cap.html('<span class="service-name">' + serviceDetails[0] + '</span><span class="service-details">' + serviceDetails[1] + '</span>');
-        $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
-      });
-      $figure.on('mouseleave', function () {
-        $cap.empty();
-      });
     }
 
   };
