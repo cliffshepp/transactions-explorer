@@ -35,13 +35,13 @@ function pathToName(path) {
 
 function fixTheFont(page) {
     var fontStyles = fs.open('data/fonts.css', 'r').read();
-    // var h = page.evaluate(function (fontStyles) {
-    //     var fontLink = document.getElementsByTagName('link')[1],
-    //         style = document.createElement('style');
-    //         style.type = 'text/css';
-    //         style.appendChild(document.createTextNode('foo'));
-    //         fontLink.parentNode.insertBefore(style, fontLink.nextSibling);
-    // }, fontStyles);
+    page.evaluate(function (fontStyles) {
+            var fontLink = document.getElementsByTagName('link')[1],
+                style = document.createElement('style');
+                style.type = 'text/css';
+                style.appendChild(document.createTextNode('foo'));
+                fontLink.parentNode.insertBefore(style, fontLink.nextSibling);
+    }, fontStyles);
 }
 
 
@@ -49,7 +49,7 @@ function processPage() {
     console.log(pagesWithTreeMaps.length);
     var path = pagesWithTreeMaps.pop();
     page.open(path, function () {
-        var treemap = page.evaluate(function () { return document.getElementsByClassName('treemap')[0]; })
+        var treemap = page.evaluate(function () { return document.getElementsByTagName('html')[0]; })
         console.log(path);
         if (treemap) {
             fixTheFont(page);
