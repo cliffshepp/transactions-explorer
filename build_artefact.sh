@@ -5,9 +5,6 @@ if [ -z "$VIRTUAL_ENV" ]; then
     exit 1
 fi
 
-# Download the environment-specific static manifest
-curl "${ASSET_HOST}/static/manifest.yml" > data/static-digests.yml
-
 mkdir -p artefacts
 mkdir -p output; rm -Rf output/*
 
